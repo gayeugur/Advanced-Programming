@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Binomial Probabilities</title>
+
+  <style>
+    body { max-width: 440px; }
+    pre  { overflow-x: auto; }
+    input { width: 50px }
+    #out{background-color:blanchedalmond; border: 1px dashed  brown; }
+    .out{background-color:blanchedalmond; border: 1px dashed  brown; border-radius: 10px;}
+    #title{color: brown; width: 230px;}
+    #title:hover{background-color: blanchedalmond;}
+    button{border: 1px dashed  brown;background-color:blanchedalmond;}
+    button:hover{background-color: peru;}
+    #res{background-color:blanchedalmond; border: 1px dashed  brown;}
+    a{color: darkseagreen;}
+    a:hover{color:darkslategray}
+    b{color:brown; width: 100px;}
+    b:hover {background-color: blanchedalmond;}
+    #res:hover {background-color: peru;}
+
+  </style>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+n = <input type=number class="out" id=en value=7 onChange="calculate()">
+&emsp;
+x = <input type=number class="out" id=ex value=1 onChange="calculate()">
+&emsp;
+p = <input type=number class="out" id=pp value=0.1 step="0.1" onChange="calculate()">
+&emsp;
+<span id=res></span>
+<hr />
+
+<button type="button" onclick='document.getElementById("demo").innerHTML =Number(en.value)'>n değerini göster</button>
+<button type="button" onclick=Yenile(Number(en.value))>Tabloyu n değerine göre güncelle</button>
+<body>
+    
+    <div>
+        <pre id=out style="font-size:small"></pre>
+    </div>
+
+
+<b>Sample code</b>
+
+<pre id=sample></pre>
+<hr />
+<p>Ref: <a href="https://www.dummies.com/education/math/statistics/figuring-binomial-probabilities-using-the-binomial-table/" 
+   target="NewTab">Binomial Table</a>
+</p>
+
+<hr />
+<script>
+"use strict";
+
+function faktor(sayi) {    
+    var sonuc=1;
+    for(let i=1;i<=sayi;i++){
+        sonuc*=i;
+    }
+    return sonuc;
+    }
+
+
+function binomial(n,x,p,f=3){
+    let sonuc=faktor(n)/(faktor(x)*faktor(n-x));
+    sonuc=sonuc*Math.pow(p,x)*Math.pow((1-p),(n-x));
+    return sonuc.toFixed(f)+'   ';
+}
+
+function calculate() {
+    let x = Number(ex.value)
+    if (!Number.isInteger(x)) {
+        x = Math.round(x); ex.value = x
+    }
+    
+    let p = Number(pp.value)
+    let n = Number(en.value)
+    res.innerText = "P(n,x,p) = "+binomial(n,x, p)
+}
+
+
+function doTable(n) {
+    const L = [0.1,0.2,0.3,0.4,0.5,0.6]
+    let a = L.map((p) => 'p='+p+' ')
+    let str = header(a)
+    for (let x=0; x<=n; x++) { 
+       let a = L.map((p) => binomial(n,x, p))
+       str += oneLine(a, x)
+    }
+    return str
+}
+
+const Yenile= function (n){
+    out.innerText = doTable(n)
+}
+
+
+let header  = (a) => '     '+ a.join('   ')  
+let oneLine = (a, x) => '\nx='+x+'  '+ a.join(' ')
+
+    title.innerText = document.title
+    sample.innerText =  faktor+'\n'+binomial+'\n'+doTable
+    calculate()
+    out.innerText = doTable(Number(en.value))
+</script>
+
+</body>
+</html>
