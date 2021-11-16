@@ -1,0 +1,46 @@
+<head>
+
+</head>
+<body>
+    <pre id=sample></pre>
+</body>
+<script>
+    function range(basla, bitir){
+        let arr=[]
+        if(basla<bitir){
+            counter=1;
+        }else{
+            counter=-1;
+        }
+        if(counter>0){
+            for(let i=basla; i<(bitir+1); i+=counter){
+                arr.push(i);
+            }
+        }else if(counter<0){
+            for(let i=basla; i>=bitir; i+=counter){
+                arr.push(i);
+            }
+        }
+        return arr;
+    }
+
+
+    function analyze(min=0){
+        let a =[]
+        let count=0;
+        for(let evt of EVENTS){
+            let cor=phi(tableFor(evt));
+            if(Math.abs(cor)>min){
+                a.push(evt + ':' + cor.toFixed(4));
+                for(let i of JOURNAL.events){
+                    if(i==evt){
+                        count++;
+                    }
+                }
+                console.log(a);
+            }
+        }
+    }
+    
+    sample.innerText = range +'  '+analyze
+</script>
