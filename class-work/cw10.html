@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>GAYE UGUR CW10</title>
+  <style> 
+    body { max-width: 440px; }
+	#online { color: blue; }
+  </style>
+</head>
+
+<body>
+
+<h2>Battery Status</h2>
+<div id="charge"></div>
+<progress id="progbar" max="100"></progress>
+<span id="per"></span>
+<h2>Online Status</h2>
+<p id="online"></p>
+<h2>Keyboard</h2>
+<span id="keyCont"></span>
+<span id="key"></span>
+<br/><br/>
+<b>Sample code</b>
+<pre id=sample></pre>
+<hr />
+
+<script>
+"use strict";
+function init() {
+    navigator.getBattery().then(b => {
+        let levelChange = () => {
+        per.innerText = (100*b.level).toFixed(2)+'%';
+        progbar.value = 100*b.level;
+      }
+      b.onlevelchange = levelChange();
+      
+      let chargeChange = () => {
+        charge.innerText = (b.charging) ?
+          "Charging..." : "Discharging...";
+      }
+    
+      b.onchargingchange = chargeChange();
+    })
+    
+    online.innerText = (window.navigator.onLine)?
+      "connected -- online" :
+      "disconnected -- offline";
+    window.addEventListener("online", () => {
+      online.innerText = "connected -- online";
+    });
+    window.addEventListener("offline", () => {
+      online.innerText = "disconnected -- offline";
+    });
+    
+    window.onkeydown = (evt) => {     
+      if(evt.key=='a'){
+        document.body.style.background = "yellow";
+      }else{
+        document.body.style.background =""
+      }
+      key.innerText = evt.key;
+      
+    };
+  }
+    init();
+    sample.innerText = init;
+    
+</script>
+
+</body>
+</html>
