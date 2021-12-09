@@ -1,12 +1,13 @@
 <html>
 <head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 <style> 
    
     body {
-    	background: linear-gradient(320deg, #9EBDB4 25%, #426158 75%) ;
-		width: 450px;
+		max-width: 480px;
     }
     .circle {
         width: 20px;
@@ -21,7 +22,7 @@
 	    height: 50px;
 	    position: absolute;
 	    background: #FDF0D5;
-		margin-left: 30%;
+		margin-left: 2%;
     }
 	.icons{
 		size: 30px;
@@ -29,30 +30,42 @@
 		margin: 10px;
 		color: #426158;
 	}
+	#sample{
+		font-size: 12px;
+	}
+	#smp{
+		margin-top: 450px;
+	}
+	.bg{
+		border: 3px solid #426158;
+		background-color: #92B5AB;
+	}
+
     </style>
     </head>
     <body>
+		<div class="bg">
         <div class="animation" ><i class="fa fa-asterisk" aria-hidden="true" class="icons" style="margin: 17px; color: #426158; size: 40px;"></i></div>    
-    </body>
+    <div id="smp">
+		<b >Sample Code</b>
+		<pre id="sample">Sample Code</pre>
+	</div></div>
+	</body>
     <script>
     document.onmousemove = animateCircles; 
 
     var colors = ['#C6D8D3', '#3F3F37', '#954F46']
-
+	
 	function animateCircles(event) {
   		var circle = document.createElement("div");
   		circle.setAttribute("class", "circle");
   		document.body.appendChild(circle); 
-
   		circle.style.left = event.clientX + 'px';
   		circle.style.top = event.clientY + 'px';
-
   		var randm=Math.floor(Math.random() * colors.length);
 		circle.style.borderColor = colors[randm];
-
   		circle.style.left = circle.offsetLeft  + 'px';
   		circle.style.top = circle.offsetTop  + 'px';
-
   		circle.style.opacity = 0;
 }
 
@@ -62,7 +75,7 @@ function goCLeft() {
 	var position = 0;
 	var id = setInterval(frame, 5);
 	function frame() {
-		if (position === 500) {
+		if (position === 350) {
 			clearInterval(id);
 			goTop();
 		} else {
@@ -73,7 +86,7 @@ function goCLeft() {
 	}
 }
 function goTop() {
-	var position = 500;
+	var position = 350;
 	var id = setInterval(frameTop, 5);
 	function frameTop() {
 		if (position === 5) {
@@ -86,7 +99,7 @@ function goTop() {
 	}
 }
 function goLeft() {
-	var position = 500;
+	var position = 350;
 	var id = setInterval(frame, 5);
 	function frame() {
 		if (position === 0) {
@@ -102,7 +115,7 @@ function goBottom() {
 	var position = 0;
 	var id = setInterval(frameTop, 5);
 	function frameTop() {
-		if (position === 500) {
+		if (position === 350) {
 			clearInterval(id);
 			goRight();
 		} else {
@@ -115,7 +128,7 @@ function goRight() {
 	var position = 0;
 	var id = setInterval(frame, 5);
 	function frame() {
-		if (position === 500) {
+		if (position === 350) {
 			clearInterval(id);
 			goCrossRight();
 		} else {
@@ -125,7 +138,7 @@ function goRight() {
 	}
 }
 function goCrossRight() {
-	var position = 500;
+	var position = 350;
 	var id = setInterval(frame, 5);
 	function frame() {
 		if (position === 0) {
@@ -142,6 +155,7 @@ function goCrossRight() {
 document.addEventListener("DOMContentLoaded", function(event) {
     goCLeft();
 });
+sample.innerText =animateCircles +' \n' +goCLeft+' \n' +goTop+' \n' +goLeft +' \n' +goBottom+' \n' +goRight+' \n' +goCrossRight
 
     </script>
 </html>
