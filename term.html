@@ -123,7 +123,7 @@
                 </div>
             </div>
             <div class="wordsDiv">
-                <p class="words"></p>
+                <p class="words" id="words"></p>
             </div>
             
         </div>
@@ -177,8 +177,9 @@
                 }
              }, 1000);
           }
-    
+       var kelime='';
           function random() {
+            kelime='';
               words.innerHTML = "";
               var rnd = Math.floor(Math.random() * (1943 - 0 + 1)) + 0;
               var wordArray = list[rnd].split("");
@@ -186,6 +187,7 @@
                   var span = document.createElement("span");
                   span.classList.add("span");
                   span.innerHTML = wordArray[i];
+                  kelime+=wordArray[i];
                   words.appendChild(span);
               }
               spans = document.querySelectorAll(".span");
@@ -441,6 +443,7 @@
         button_hard.style.display="none";
         button_restart.style.display="flex";
     }
+ 
     document.querySelector('#btn').onclick =function(){
             if(count<2) { 
                 random(); 
@@ -496,22 +499,25 @@
                        if (spans[j].className === "span back") { 
                           checker++;
                       }
-                      if (checker === spans.length) { 
-                       
-                          
-                          //var kelime =document.getElementById("words").innerHTML;
-
-                          
-                          points++; 
-                          scoreDiv.innerHTML = points; 
-                          document.removeEventListener("keydown", typing, false);
+                      if (checker === spans.length) {        
+                          document.removeEventListener("keydown", typing, false); 
+                        
                           setTimeout(function(){
-                              var ad=document.getElementById("result").value;
-                          console.log(ad);
-                              words.className = "words"; 
-                              random(); 
-                              document.forms[0].reset();
-                              document.addEventListener("keydown", typing, false);
+                                 var ad=document.getElementById("result").value;
+                          console.log(ad);console.log(kelime);
+                            if(ad.toUpperCase()===kelime.toUpperCase()){
+                                points++; 
+                                scoreDiv.innerHTML = points; 
+                                words.className = "words"; 
+                                random(); 
+                                document.forms[0].reset();
+                                document.addEventListener("keydown", typing, false);
+                            }else{
+                                words.className = "words"; 
+                                random(); 
+                                document.forms[0].reset();
+                                document.addEventListener("keydown", typing, false);
+                            }
                           },200);
                       }
     
