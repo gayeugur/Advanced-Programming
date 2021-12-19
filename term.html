@@ -185,9 +185,10 @@
         var kelime='';
         function random() {
             kelime='';
+            document.forms[0].reset();
             words.innerHTML = "";
             var rnd = Math.floor(Math.random() * (1943 - 0 + 1)) + 0;
-            var wordArray = list[rnd].split("");
+            var wordArray = list[rnd].split(""); //harfleri tek tek ayırır
             for (var i = 0; i < wordArray.length; i++) { 
                 var span = document.createElement("span");
                 span.classList.add("span");
@@ -488,29 +489,29 @@
     
         function typing(e) {
             typed = String.fromCharCode(e.which);
-            for (var i = 0; i < spans.length; i++) {
-                if (spans[i].innerHTML === typed) { 
+            for (var i = 0; i < spans.length; i++) {//harflere ayırır
+                if (spans[i].innerHTML === typed) { //harfler esit ise
                     if (spans[i].classList.contains("back") === false && spans[i-1] === undefined || spans[i-1].classList.contains("back") !== false ) { 
                         spans[i].classList.add("back");
                     }
                 }  
             }
-            var check = 0;
+            var check = 0; //kelimenin uzunluğunu bulmak için kullanılan değişken
             for (var j = 0; j < spans.length; j++) { 
-                if (spans[j].className === "span back") { 
-                    check++;
+                if (spans[j].className === "span back") {  //class name i span back ise
+                    check++; //uzunluğu arttır
                 }
-                if (check === spans.length) {        
-                    document.removeEventListener("keydown", typing, false); 
+                if (check === spans.length) {         //uzunluklar eşitse
+                    document.removeEventListener("keydown", typing, false);  //typing event listener silinir
                     setTimeout(function(){
-                        var ad=document.getElementById("result").value;
-                        if(ad.toUpperCase()===kelime.toUpperCase()){
-                            points++; 
+                        var ad=document.getElementById("result").value; //result değişkeni ad değişkenine aktarılır
+                        if(ad.toUpperCase()===kelime.toUpperCase()){//eşit ise
+                            points++; //points aktarılır ve yerine yeni points yazılır
                             scoreDiv.innerHTML = points; 
                             words.className = "words"; 
-                            random(); 
-                            document.forms[0].reset();
-                            document.addEventListener("keydown", typing, false);
+                            random(); //yeni random deger alınır 
+                            document.forms[0].reset();//input sıfırlanır
+                            document.addEventListener("keydown", typing, false); //typing eklenir
                         }else{
                             words.className = "words"; 
                             random();
