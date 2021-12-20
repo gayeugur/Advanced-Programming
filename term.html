@@ -188,7 +188,7 @@
             kelime='';
             document.forms[0].reset();
             words.innerHTML = "";
-            var rnd = Math.floor(Math.random() * (1943 - 0 + 1)) + 0;
+            var rnd = Math.floor(Math.random() * (1918 - 0 + 1)) + 0;
             var wordArray = list[rnd].split(""); //harfleri tek tek ayırır
             for (var i = 0; i < wordArray.length; i++) { 
                 var span = document.createElement("span");
@@ -201,19 +201,19 @@
         }
     
     
-        const list = ['ACCOUNT','ACCURATE','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
-      'ACTUAL','ACTUALLY','ADD','ADDITION','ADDITIONAL','ADJECTIVE','ADULT','ADVENTURE',
-      'ADVICE','AFFECT','AFRAID','AFTER','AFTERNOON','AGAIN','AGAINST','AGE',
-      'AGO','AGREE','AHEAD','AID','AIR','AIRPLANE','ALIKE','ALIVE',
-      'ALL','ALLOW','ALMOST','ALONE','ALONG','ALOUD','ALPHABET','ALREADY',
+        const list = ['ACCOUNT','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
+      'ADD','ADDITION','ADJECTIVE','ADULT','ADVENTURE',
+      'ADVICE','AFFECT','AFTER','AFTERNOON','AGAIN','AGE',
+      'AGO','AGREE','AID','AIR','ALIKE','ALIVE',
+      'ALL','ALLOW','ALMOST','ALONE','ALONG','ALOUD',
       'ALSO','ALTHOUGH','AM','AMONG','AMOUNT','ANCIENT','ANGLE','ANGRY',
-      'ANIMAL','ANNOUNCED','ANOTHER','ANSWER','ANTS','ANY','ANYBODY','ANYONE',
-      'ANYTHING','ANYWAY','ANYWHERE','APART','APARTMENT','APPEARANCE','APPLE','APPLIED',
-      'APPROPRIATE','ARE','AREA','ARM','ARMY','AROUND','ARRANGE','ARRANGEMENT',
+      'ANNOUNCED','ANOTHER','ANSWER','ANTS','ANY','ANYBODY','ANYONE',
+      'ANYTHING','ANYWHERE','APPLE','APPLIED',
+      'ARE','ARM','ARMY','AROUND','ARRANGEMENT',
       'ARRIVE','ARROW','ART','ARTICLE','AS','ASIDE','ASK','ASLEEP',
-      'AT','ATE','ATMOSPHERE','ATOM','ATOMIC','ATTACHED','ATTACK','ATTEMPT',
-      'ATTENTION','AUDIENCE','AUTHOR','AUTOMOBILE','AVAILABLE','AVERAGE','AVOID','AWARE',
-      'AWAY','BABY','BACK','BAD','BADLY','BAG','BALANCE','BALL',
+      'AT','ATE','ATMOSPHERE','ATOM','ATOMIC','ATTEMPT',
+      'ATTENTION','AUDIENCE','AUTHOR','AUTOMOBILE','AVOID',
+      'BABY','BACK','BAD','BADLY','BAG','BALANCE','BALL',
       'BALLOON','BAND','BANK','BAR','BARE','BARK','BARN','BASE',
       'BASEBALL','BASIC','BASIS','BASKET','BAT','BATTLE','BE','BEAN',
       'BEAR','BEAT','BEAUTIFUL','BEAUTY','BECAME','BECAUSE','BECOME','BECOMING',
@@ -443,7 +443,8 @@
       'WORK','WORKER','WORLD','WORRIED','WORRY','WORSE','WORTH','WOULD',
       'WRAPPED','WRITE','WRITER','WRITING','WRITTEN','WRONG','WROTE','YARD',
       'YEAR','YELLOW','YES','YESTERDAY','YET','YOU','YOUNG','YOUNGER',
-      'YOUR','YOURSELF','YOUTH','ZERO','ZOO'];
+      'YOUR','YOURSELF','YOUTH','ZERO'];
+
         function hidebutton(){
             button_easy.style.display="none";
             button_medium.style.display="none";
