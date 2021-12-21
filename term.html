@@ -1,8 +1,5 @@
 <html>
-    <link ref:"href" src:"icon.png">
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
         <style>
         
     body {
@@ -124,7 +121,8 @@
                 </div>
                 <div class="timeDiv">
                     <p>Time left</p>
-                    <span class="time" id="time"><i class="fa fa-bell" ></i></span>
+                    <span class="time" id="time">
+                        <img src="kum.PNG" width="50px" height="60px"/></span>
                 </div>
             </div>
             <div class="wordsDiv">
@@ -188,8 +186,8 @@
             kelime='';
             document.forms[0].reset();
             words.innerHTML = "";
-            var rnd = Math.floor(Math.random() * (300 - 0 + 1)) + 0;
-            var wordArray = list[rnd].split(""); 
+            var rnd = Math.floor(Math.random() * (300- 0 + 1)) + 0;
+            var wordArray = list[rnd].split(""); //harfleri tek tek ayırır
             for (var i = 0; i < wordArray.length; i++) { 
                 var span = document.createElement("span");
                 span.classList.add("span");
@@ -201,7 +199,6 @@
         }
     
     
-     
         const list = ['ACCOUNT','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
       'ADD','ADDITION','ADJECTIVE','ADULT','ADVENTURE',
       'ADVICE','AFFECT','AFTER','AFTERNOON','AGE',
@@ -230,12 +227,14 @@
         'JET','STEAM','BELL','MAJOR','CARBON','HELP','CAPITAL','LIFE','RACE','SEVERAL','SEEING','UNLESS',
         'EXPLANATION','ROOM','SOURCE','FACTORY','FARM','ADJECTIVE','MESS','STAGE','TELL','INSTEAD','COURT',
         'LONGER','COULD','STRIKE','NATURAL','COMPOSED','HEAT','PRESENT','HIMSELF' ,'FULLY','METAL','RHYTHM',
-         'HAIR','SUBJECT','BUS','COST','BEGAN','THUMB','THREE','CHAPTER','TEAM','STATEMENT','GIFT','SOAP','COW',
-        'PLANNED','CHIP','CENTER','VARIETY','SPORT','CONDITION','SAY','BEAUTIFUL','RICE','FORTY','TEARS','DO',
-         'COOL','SIGN','COUPLE','GAIN','LIVING','SILLY','CREW','ACTION','MOUTH','ACCOUNT','PATH',
-         'MYSTERIOUS','FACT','ANOTHER','TALK','SINCE','LIPS','JUMP','PRIDE','MOST','LIQUID'
-          ,'MILK','MY','ONE','ACT','SOMEHOW','BEAUTY','DAMAGE','BELONG','AUTOMOBILE','DRINK','SOAP',
-         'COMPANY','SCORE','PLEASE','MEASURE','WOODEN','ROCK','FLOOR','TRAVEL']
+    'HAIR','SUBJECT','BUS','COST','BEGAN','THUMB','THREE','CHAPTER','TEAM','STATEMENT','GIFT','SOAP','COW',
+'PLANNED','CHIP','CENTER','VARIETY','SPORT','CONDITION','SAY','BEAUTIFUL','RICE','FORTY','TEARS','DO',
+'COOL','SIGN','COUPLE','GAIN','LIVING','SILLY','CREW','ACTION','MOUTH','ACCOUNT','PATH',
+'MYSTERIOUS','FACT','ANOTHER','TALK','SINCE','LIPS','JUMP','PRIDE','MOST','LIQUID'
+,'MILK','MY','ONE','ACT','SOMEHOW','BEAUTY','DAMAGE','BELONG','AUTOMOBILE','DRINK','SOAP',
+'COMPANY','SCORE','PLEASE','MEASURE','WOODEN','ROCK','FLOOR','TRAVEL']
+      
+      console.log(list.length);
         function hidebutton(){
             button_easy.style.display="none";
             button_medium.style.display="none";
@@ -282,29 +281,29 @@
     
         function typing(e) {
             typed = String.fromCharCode(e.which);
-            for (var i = 0; i < spans.length; i++) {
-                if (spans[i].innerHTML === typed) { 
+            for (var i = 0; i < spans.length; i++) {//harflere ayırır
+                if (spans[i].innerHTML === typed) { //harfler esit ise
                     if (spans[i].classList.contains("back") === false && spans[i-1] === undefined || spans[i-1].classList.contains("back") !== false ) { 
                         spans[i].classList.add("back");
                     }
                 }  
             }
-            var check = 0; 
+            var check = 0; //kelimenin uzunluğunu bulmak için kullanılan değişken
             for (var j = 0; j < spans.length; j++) { 
-                if (spans[j].className === "span back") {  
+                if (spans[j].className === "span back") {  //class name i span back ise
                     check++; //uzunluğu arttır
                 }
-                if (check === spans.length) {         
-                    document.removeEventListener("keydown", typing, false);  
+                if (check === spans.length) {         //uzunluklar eşitse
+                    document.removeEventListener("keydown", typing, false);  //typing event listener silinir
                     setTimeout(function(){
-                        var ad=document.getElementById("result").value; 
-                        if(ad.toUpperCase()===kelime.toUpperCase()){
+                        var ad=document.getElementById("result").value; //result değişkeni ad değişkenine aktarılır
+                        if(ad.toUpperCase()===kelime.toUpperCase()){//eşit ise
                             points++; //points aktarılır ve yerine yeni points yazılır
                             scoreDiv.innerHTML = points; 
                             words.className = "words"; 
                             random(); //yeni random deger alınır 
                             document.forms[0].reset();//input sıfırlanır
-                            document.addEventListener("keydown", typing, false); 
+                            document.addEventListener("keydown", typing, false); //typing eklenir
                         }else{
                             words.className = "words"; 
                             random();
