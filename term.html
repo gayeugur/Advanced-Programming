@@ -239,8 +239,7 @@
       'MYSTERIOUS','FACT','ANOTHER','TALK','SINCE','LIPS','CENTURY','JUMP','PRIDE','MOST','LIQUID'
       ,'MILK','MY','ONE','ACT','SOMEHOW','BEAUTY','DAMAGE','BELONG','AUTOMOBILE','DRINK','SOAP',
       'COMPANY','SCORE','PLEASE','MEASURE','WOODEN','ROCK','FLOOR','TRAVEL','CAUSE']
-      
-      console.log(list.length);
+       
         function hidebutton(){
             button_easy.style.display="none";
             button_medium.style.display="none";
@@ -294,22 +293,22 @@
                     }
                 }  
             }
-            var check = 0; //kelimenin uzunluğunu bulmak için kullanılan değişken
+            var check = 0;
             for (var j = 0; j < spans.length; j++) { 
-                if (spans[j].className === "span back") {  //class name i span back ise
-                    check++; //uzunluğu arttır
+                if (spans[j].className === "span back") {  
+                    check++;
                 }
-                if (check === spans.length) {         //uzunluklar eşitse
-                    document.removeEventListener("keydown", typing, false);  //typing event listener silinir
+                if (check === spans.length) {
+                    document.removeEventListener("keydown", typing, false);  
                     setTimeout(function(){
-                        var ad=document.getElementById("result").value; //result değişkeni ad değişkenine aktarılır
-                        if(ad.toUpperCase()===kelime.toUpperCase()){//eşit ise
-                            points++; //points aktarılır ve yerine yeni points yazılır
+                        var ad=document.getElementById("result").value; 
+                        if(ad.toUpperCase()===kelime.toUpperCase()){
+                            points++;
                             scoreDiv.innerHTML = points; 
                             words.className = "words"; 
-                            random(); //yeni random deger alınır 
-                            document.forms[0].reset();//input sıfırlanır
-                            document.addEventListener("keydown", typing, false); //typing eklenir
+                            random(); 
+                            document.forms[0].reset();
+                            document.addEventListener("keydown", typing, false); 
                         }else{
                             words.className = "words"; 
                             random();
