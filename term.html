@@ -15,7 +15,7 @@
         text-align: center;
         padding: 2%;
         height: 500px;
-        background-image: linear-gradient( to left, #B6B9B6,#979B97, #787D78, #646864, #464946,#424242);
+        background:#B6B9B6;
     }
     .game{
         display:inherit;
@@ -26,7 +26,7 @@
         padding: 2%;
         font: bold;
         height: 500px;
-        background-image: linear-gradient( to left, #B6B9B6,#979B97,#787D78,#646864,#464946,#424242);
+        background: #B6B9B6;
         text-align: center;
     }
     .game h3{
@@ -113,7 +113,7 @@
             <div class="secim">
                 <button class="button" id="btn" onclick=random()>Pass</button>
                 <p id="mess"></p>
-                <button class="button" id="btn_easy">Easy</button>
+                <button class="button" id="btn_easy" onclick="focusing()">Easy</button>
                 <button class="button" id="btn_medium" >Medium</button>
                 <button class="button" id="btn_hard">Hard</button>
             </div>
@@ -158,8 +158,9 @@
             game.style.display = "block";
             result.style.display = "none";
         }
-      
+     
         function countdown(button,second) {
+            document.getElementById("result").focus();
             var timer = setInterval(function(){
             button.disabled = true;
             seconds--;
@@ -249,6 +250,7 @@
         }
  
         document.querySelector('#btn').onclick =function(){
+            document.getElementById("result").focus();
             if(count<2) { 
                 random(); 
                 count=count+1;
@@ -258,6 +260,7 @@
             }
         }
         button_easy.addEventListener("click", function(e){
+            document.getElementById("result").focus();
             hidebutton();
             seconds = 60;
             document.getElementById("time").innerHTML = seconds;
@@ -267,6 +270,7 @@
         }, 1000);
     
         button_medium.addEventListener("click", function(e){
+            document.getElementById("result").focus();
             hidebutton();
             seconds = 45;
             document.getElementById("time").innerHTML = seconds;
@@ -276,6 +280,7 @@
         }, 1000);
 
         button_hard.addEventListener("click", function(e){
+            document.getElementById("result").focus();
             hidebutton();
             seconds = 30;
             document.getElementById("time").innerHTML = seconds;
@@ -285,9 +290,10 @@
         }, 1000);
     
         function typing(e) {
+            document.getElementById("result").focus();
             typed = String.fromCharCode(e.which);
-            for (var i = 0; i < spans.length; i++) {//harflere ayırır
-                if (spans[i].innerHTML === typed) { //harfler esit ise
+            for (var i = 0; i < spans.length; i++) {
+                if (spans[i].innerHTML === typed) { 
                     if (spans[i].classList.contains("back") === false && spans[i-1] === undefined || spans[i-1].classList.contains("back") !== false ) { 
                         spans[i].classList.add("back");
                     }
