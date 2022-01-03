@@ -15,7 +15,7 @@
         width: 100%;
         text-align: center;
         padding: 2%;
-        height: 500px;
+        height: 550px;
         background:#B6B9B6;
         border: 2px dotted #639284;
     }
@@ -35,11 +35,11 @@
     }
     .back_gorsel{
          background-image: url(resim.PNG);
-         background-position: inherit;
+         background-size: cover;
          background-repeat: no-repeat;
          width: 90%;
          height: 50%;
-         margin-left: 40px;
+         margin-left: 20px;
          border: 2px dotted #639284;
     }
     .game h3{
@@ -80,7 +80,7 @@
     }
 
     .wordsDiv {
-        margin-top: 50px;
+        margin-top: 220px;
     }
     
     .words span{
@@ -104,7 +104,7 @@
         display: none;
     }
     .result{
-        margin-left: 200px;
+        margin-left: 140px;
         border: 2px solid #639284;
     }
     
@@ -133,7 +133,7 @@
             <div class="secim">
                 <button class="button" id="btn" onclick=random()>Pass</button>
                 <p id="mess"></p>
-                <button class="button" id="btn_easy" onclick="focusing()">Easy</button>
+                <button class="button" id="btn_easy" >Easy</button>
                 <button class="button" id="btn_medium" >Medium</button>
                 <button class="button" id="btn_hard">Hard</button>
             </div>
@@ -231,6 +231,7 @@
                 words.appendChild(span);
             }
         spans = document.querySelectorAll(".span");
+       
         }
     
     
