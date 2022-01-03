@@ -6,6 +6,7 @@
         
     body {
         font-family: 'Raleway', sans-serif;
+        
     }
     .genel {
         display: none;
@@ -16,6 +17,7 @@
         padding: 2%;
         height: 500px;
         background:#B6B9B6;
+        border: 2px dotted #639284;
     }
     .game{
         display:inherit;
@@ -28,6 +30,17 @@
         height: 500px;
         background: #B6B9B6;
         text-align: center;
+        border: 3px dotted #639284;
+       
+    }
+    .back_gorsel{
+         background-image: url(resim.PNG);
+         background-position: inherit;
+         background-repeat: no-repeat;
+         width: 90%;
+         height: 50%;
+         margin-left: 40px;
+         border: 2px dotted #639284;
     }
     .game h3{
         margin-right: 50px;
@@ -44,7 +57,8 @@
         justify-content: center;
         width: 100px;
         font-size: 18px;
-        margin: 20px;       
+        margin: 20px;    
+        border: 2px dotted #639284;   
     }
     .button:hover  {
         box-shadow: rgba(45, 35, 66, .4) 0 6px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #626255 0 -5px 0 inset;
@@ -54,8 +68,8 @@
         margin-top: 10px;
         text-align: center;
     }
-    .scoreDiv {float: left;}
-    .timeDiv {float: right;}
+    .scoreDiv {float: left;  border: 2px solid #639284;  height: 200px;  width: 100px;}
+    .timeDiv {float: right;  border: 2px solid #639284;  height: 200px;  width: 100px;  }
     
     .secim{
         display: inline-flex;
@@ -90,16 +104,22 @@
         display: none;
     }
     .result{
-        margin-left: 180px;
+        margin-left: 200px;
+        border: 2px solid #639284;
     }
+    
     #bton{
         margin: auto;
     }
+    
     </style>
     
     </head>
     <body>
         <div class="game" id="game">
+            <div class="back_gorsel">
+
+            </div>
             <h3>WELCOME TO TYPING GAME</h3>
             <br>
             <button onclick="level()" id='bton' class="button">START</button>
@@ -134,6 +154,7 @@
             <div class="wordsDiv">
                 <p class="words" id="words"></p>
             </div>
+            <p id="res"></p>
             
         </div>
  </body>
@@ -160,6 +181,7 @@
         }
      
         function countdown(button,second) {
+            game.style.backgroundColor="#B6B9B6"; 
             document.getElementById("result").focus();
             var timer = setInterval(function(){
             button.disabled = true;
@@ -167,14 +189,18 @@
             temp.innerHTML = seconds;
             if (seconds === 0) {
                 var mess='';
+            game.style.backgroundColor="#92B5AB";
+            
             if(points>20){
-                mess='You are perfect';
+                mess='You are perfect'; 
+                
             }else if(points>10){
                 mess='You are good';
             }else{
                 mess='You are bad';
             }
-            alert("Game over! Your score is " + points+"."+ mess);
+            document.getElementById("res").innerHTML="Game over! Your score is " + points+"."+ mess;
+
             scoreDiv.innerHTML = "0";
             words.innerHTML = "";
             clearInterval(timer);
@@ -184,17 +210,19 @@
             button_hard.style.display="flex";
             button_restart.style.display="none";
             document.getElementById("mess").innerHTML = '';
-            button.disabled = false;      
+            button.disabled = false;
+                 
                 }
              }, 1000);
           }
         var kelime='';
         function random() {
+            document.getElementById("res").innerHTML="";
             kelime='';
             document.forms[0].reset();
             words.innerHTML = "";
             var rnd = Math.floor(Math.random() * (300- 0 + 1)) + 0;
-            var wordArray = list[rnd].split(""); //harfleri tek tek ayırır
+            var wordArray = list[rnd].split(""); 
             for (var i = 0; i < wordArray.length; i++) { 
                 var span = document.createElement("span");
                 span.classList.add("span");
@@ -290,7 +318,6 @@
         }, 1000);
     
         function typing(e) {
-            document.getElementById("result").focus();
             typed = String.fromCharCode(e.which);
             for (var i = 0; i < spans.length; i++) {
                 if (spans[i].innerHTML === typed) { 
